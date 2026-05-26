@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parth Adhana — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e0e0e0;
+      --fg-strong: #ffffff;
+      --fg-soft: #bbbbbb;
+      --accent: #00ff88;
+      --muted: #555555;
+      --border: #1e1e1e;
+      --card: #111111;
+    }
+
+    body.light {
+      --bg: #f7f7f5;
+      --fg: #222222;
+      --fg-strong: #000000;
+      --fg-soft: #666666;
+      --accent: #007744;
+      --muted: #aaaaaa;
+      --border: #dedede;
+      --card: #eeeeeb;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 15px;
+      line-height: 1.75;
+      padding: 0 1.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* ── THEME TOGGLE ── */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    #theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 11px;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    #theme-btn{ border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .tag {
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--fg-strong);
+    }
+
+    header .role {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+    }
+
+    .links a {
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .links a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      color: var(--fg-soft);
+      font-size: 14.5px;
+      line-height: 1.9;
+      max-width: 640px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .job + .job { margin-top: 2.25rem; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .job-company {
+      font-weight: 700;
+      color: var(--fg-strong);
+      font-size: 15px;
+    }
+
+    .job-period {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .job-title {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 0.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .job ul { list-style: none; padding: 0; }
+
+    .job ul li {
+      color: var(--fg-soft);
+      font-size: 13.5px;
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 0.35rem;
+    }
+
+    .job ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    .job-tech {
+      margin-top: 0.75rem;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .job-tech span { color: var(--fg); }
+
+    /* ── SKILLS ── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0.5rem;
+      align-items: baseline;
+      margin-bottom: 0.7rem;
+    }
+
+    .skill-cat {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .skill-items {
+      color: var(--fg);
+      font-size: 13.5px;
+    }
+
+    /* ── PROJECTS ── */
+    .project + .project { margin-top: 2rem; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-name {
+      font-weight: 700;
+      color: var(--fg-strong);
+      font-size: 14.5px;
+    }
+
+    .project-stack {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .project ul { list-style: none; padding: 0; }
+
+    .project ul li {
+      color: var(--fg-soft);
+      font-size: 13.5px;
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .project ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievements ul { list-style: none; padding: 0; }
+
+    .achievements ul li {
+      color: var(--fg-soft);
+      font-size: 13.5px;
+      padding-left: 1.4em;
+      position: relative;
+      margin-bottom: 0.45rem;
+    }
+
+    .achievements ul li::before {
+      content: '★';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 4px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .edu-school {
+      font-weight: 700;
+      color: var(--fg-strong);
+      font-size: 15px;
+    }
+
+    .edu-period {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .edu-degree {
+      color: var(--fg-soft);
+      font-size: 13.5px;
+      margin-top: 0.25rem;
+    }
+
+    /* ── TERMINAL ── */
+    .terminal-section { padding: 3rem 0 5rem; }
+
+    .terminal-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .terminal-hint span { color: var(--accent); }
+
+    .terminal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: text;
+      min-height: 140px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .terminal.terminal-fullscreen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1000;
+      border-radius: 0;
+      min-height: 100vh;
+      overflow-y: auto;
+      cursor: text;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.9rem 1.25rem 0;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: opacity 0.15s;
+    }
+
+    .dot:hover { opacity: 0.7; }
+
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* spacer to balance dot width on right */
+    .terminal-bar-spacer { width: 36px; }
+
+    .terminal-body {
+      padding: 0.75rem 1.5rem 1.25rem;
+    }
+
+    .terminal-body.hidden { display: none; }
+
+    .terminal-closed-msg {
+      padding: 0.75rem 1.5rem 1.25rem;
+      font-size: 13px;
+      color: var(--muted);
+      display: none;
+    }
+
+    .terminal-closed-msg button {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+    }
+
+    #terminal-output { min-height: 40px; }
+
+    .t-line {
+      font-size: 13.5px;
+      margin-bottom: 0.2rem;
+      opacity: 0;
+      animation: fadein 0.15s forwards;
+    }
+
+    @keyframes fadein { to { opacity: 1; } }
+
+    .t-line.success { color: var(--accent); }
+    .t-line.muted   { color: var(--muted); }
+    .t-line.error   { color: #ff6b6b; }
+    .t-line.info    { color: var(--fg-soft); }
+
+    .t-input-row {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .t-prompt {
+      color: var(--accent);
+      font-size: 13.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* wrapper grows, cursor sits right after typed text */
+    .t-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    #t-display {
+      font-size: 13.5px;
+      color: var(--fg);
+      word-break: break-all;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: var(--accent);
+      flex-shrink: 0;
+      animation: blink 1s step-end infinite;
+      margin-left: 1px;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .skill-row { grid-template-columns: 120px 1fr; }
+      .job-header, .project-header, .edu-header { flex-direction: column; }
+    }
+
+    @media (max-width: 380px) {
+      .skill-row { grid-template-columns: 1fr; }
+      .skill-cat { margin-bottom: 0.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <header>
+      <div class="header-top">
+        <div class="tag">// portfolio</div>
+        <button id="theme-btn" onclick="toggleTheme()">may there be light</button>
+      </div>
+      <h1>Parth Adhana</h1>
+      <div class="role">Software Engineer · Backend &amp; Systems</div>
+      <nav class="links">
+        <a href="mailto:parth007adhana@gmail.com">parth007adhana@gmail.com</a>
+        <a href="www.linkedin.com/in/parth-adhana-56b067199" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://github.com/ParthAdhana" target="_blank" rel="noopener">github</a>
+        <a href="tel:+918929365677">+91-8929365677</a>
+      </nav>
+    </header>
+
+    <!-- ABOUT -->
+    <section>
+      <div class="section-label">about</div>
+      <p class="about-text">
+        Software Engineer with 2+ years of experience building and documenting scalable backend systems,
+        real-time communication platforms, and AI-powered applications. Experienced in WebRTC, distributed
+        systems, databases, CI/CD, and LLM-based solutions in highly concurrent environments. Strong
+        problem-solving skills with solid foundations in data structures, system design, and
+        high-performance application development.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <div class="section-label">experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Samsung R&amp;D Institute</span>
+          <span class="job-period">Jan 2024 – Present</span>
+        </div>
+        <div class="job-title">Software Engineer · Noida, Uttar Pradesh</div>
+        <ul>
+          <li>Optimized scalable real-time communication infrastructure using WebRTC and MediaSoup SFU, reducing end-to-end latency by 25% and improving throughput by 40% for concurrent streaming workloads.</li>
+          <li>Redesigned asynchronous update system using WebSocket/IPC for distributed applications, reducing deployment time by 50% and network traffic by 35%.</li>
+          <li>Implemented an Android-based RAG content-generation system, improving creation speed by 30%.</li>
+          <li>Led DotNET migration of Signage TV, Flip, and Hotel TV launch pages, improving startup speed and runtime stability.</li>
+        </ul>
+        <div class="job-tech">tech: <span>C++, React.js, JavaScript, LLMs, Socket.io, WebRTC, SFU, MediaSoup, C#, Git, DBMS</span></div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Morgan Stanley</span>
+          <span class="job-period">Jan 2023 – Jul 2023</span>
+        </div>
+        <div class="job-title">Software Engineer Intern · Bengaluru, Karnataka</div>
+        <ul>
+          <li>Automated a report filing system that eliminated third-party dependencies, reducing licensing costs by 20%.</li>
+          <li>Accelerated time-to-market by 30% through streamlined report-generation workflows.</li>
+          <li>Built and reviewed backend services handling 110,000+ annual requests with 99.8% uptime.</li>
+        </ul>
+        <div class="job-tech">tech: <span>Spring Boot, React, Kubernetes, Docker, Camunda, Jenkins, PostgreSQL</span></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <div class="section-label">skills</div>
+
+      <div class="skill-row">
+        <span class="skill-cat">languages</span>
+        <span class="skill-items">C++, Java, Python, JavaScript, SQL</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">backend</span>
+        <span class="skill-items">Spring Boot, Node.js, RESTful APIs, WebSockets, Microservices, SDLC</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">databases</span>
+        <span class="skill-items">SQLite, MySQL, MongoDB, PostgreSQL, Vector DB, Redis, Kafka</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">cloud &amp; devops</span>
+        <span class="skill-items">Docker, Kubernetes, AWS, Jenkins, Git, Linux</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">systems</span>
+        <span class="skill-items">Distributed Systems, WebRTC, System Design, Multithreading, OOP, Concurrency, Caching</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <div class="section-label">projects</div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">Secure Multithreaded FTP System</span>
+          <span class="project-stack">C++ · OpenSSL · SQLite · Z-Library</span>
+        </div>
+        <ul>
+          <li>Designed a multithreaded FTP server that handled 100+ concurrent clients via thread pools.</li>
+          <li>Secured communications with TLS/SSL encryption (OpenSSL) and PBKDF2 authentication.</li>
+          <li>Enhanced transfer efficiency by over 30% using Z-Library compression.</li>
+          <li>Integrated SQLite for persistent user session management.</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">Spotify Analytics Platform</span>
+          <span class="project-stack">Flask · Pandas · OAuth · Machine Learning</span>
+        </div>
+        <ul>
+          <li>Built a cosine similarity-based recommendation engine for personalized suggestions across 50,000+ songs.</li>
+          <li>Visualized user listening patterns through interactive dashboards (top tracks/artists/genres).</li>
+          <li>Built a shareable stats feature that generated exportable image summaries.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="achievements">
+      <div class="section-label">achievements</div>
+      <ul>
+        <li>5-Star rating on CodeChef</li>
+        <li>Codeforces max rating: 1484</li>
+        <li>Ranked #112 globally (Division 2) in CodeChef Starters 43 among 10,000+ participants</li>
+      </ul>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="section-label">education</div>
+      <div class="edu-header">
+        <span class="edu-school">J.C. Bose University of Science and Technology</span>
+        <span class="edu-period">Jul 2019 – Jul 2023</span>
+      </div>
+      <div class="edu-degree">B.Tech. Information Technology — CGPA: 8.53 / 10.00</div>
+    </section>
+
+    <!-- TERMINAL -->
+    <section class="terminal-section">
+      <div class="section-label">terminal</div>
+      <div class="terminal-hint">// try: <span>sudo hire</span></div>
+      <div class="terminal" id="terminal">
+
+        <div class="terminal-bar">
+          <div class="dot dot-r" id="dot-close"  title="close"></div>
+          <div class="dot dot-y" id="dot-min"    title="minimize"></div>
+          <div class="dot dot-g" id="dot-expand" title="expand"></div>
+          <div class="terminal-title">visitor@portfolio — bash</div>
+          <div class="terminal-bar-spacer"></div>
+        </div>
+
+        <div class="terminal-body" id="terminal-body">
+          <div id="terminal-output"></div>
+          <div class="t-input-row">
+            <span class="t-prompt">visitor@portfolio:~$&nbsp;</span>
+            <span class="t-input-wrap">
+              <span id="t-display"></span><span class="cursor"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="terminal-closed-msg" id="terminal-closed-msg">
+          terminal closed — <button onclick="reopenTerminal()">reopen</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">built with html · parth adhana · 2025</div>
+  </footer>
+
+  <script>
+    /* ── THEME ── */
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('light');
+      document.getElementById('theme-btn').textContent = isLight
+        ? 'turn off the sun'
+        : 'may there be light';
+    }
+
+    /* ── TERMINAL STATE ── */
+    let termState = 'open'; // open | minimized | closed | expanded
+
+    document.getElementById('dot-close').addEventListener('click', () => {
+      document.getElementById('terminal-body').classList.add('hidden');
+      document.getElementById('terminal-closed-msg').style.display = 'block';
+      document.getElementById('terminal').classList.remove('terminal-fullscreen');
+      termState = 'closed';
+    });
+
+    document.getElementById('dot-min').addEventListener('click', () => {
+      const body = document.getElementById('terminal-body');
+      const closedMsg = document.getElementById('terminal-closed-msg');
+      if (termState === 'minimized') {
+        body.classList.remove('hidden');
+        termState = 'open';
+      } else {
+        body.classList.add('hidden');
+        closedMsg.style.display = 'none';
+        termState = 'minimized';
+      }
+    });
+
+    document.getElementById('dot-expand').addEventListener('click', () => {
+      const term = document.getElementById('terminal');
+      const body = document.getElementById('terminal-body');
+      const closedMsg = document.getElementById('terminal-closed-msg');
+      if (termState === 'expanded') {
+        term.classList.remove('terminal-fullscreen');
+        termState = 'open';
+      } else {
+        term.classList.add('terminal-fullscreen');
+        body.classList.remove('hidden');
+        closedMsg.style.display = 'none';
+        termState = 'expanded';
+      }
+    });
+
+    function reopenTerminal() {
+      document.getElementById('terminal-body').classList.remove('hidden');
+      document.getElementById('terminal-closed-msg').style.display = 'none';
+      termState = 'open';
+    }
+
+    /* ── TERMINAL INPUT ── */
+    const terminalEl = document.getElementById('terminal');
+    const output     = document.getElementById('terminal-output');
+    const display    = document.getElementById('t-display');
+
+    let buffer = '';
+
+    terminalEl.addEventListener('click', () => terminalEl.focus());
+    document.addEventListener('keydown', handleKey);
+
+    function handleKey(e) {
+      if (termState === 'closed' || termState === 'minimized') return;
+      if (e.key === 'Enter') {
+        const cmd = buffer.trim();
+        buffer = '';
+        display.textContent = '';
+        printLine('visitor@portfolio:~$ ' + cmd, 'muted');
+        runCommand(cmd);
+      } else if (e.key === 'Backspace') {
+        buffer = buffer.slice(0, -1);
+        display.textContent = buffer;
+      } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+        buffer += e.key;
+        display.textContent = buffer;
+      }
+    }
+
+    function printLine(text, cls = 'info', delay = 0) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const line = document.createElement('div');
+          line.className = 't-line ' + cls;
+          line.textContent = text;
+          output.appendChild(line);
+          line.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          resolve();
+        }, delay);
+      });
+    }
+
+    async function runCommand(cmd) {
+      if (cmd === '') return;
+
+      if (cmd === 'sudo hire') {
+        await printLine('[sudo] password for visitor: *****', 'muted', 0);
+        await printLine('', 'info', 400);
+        await printLine('✓ Access granted.', 'success', 700);
+        await printLine('Opening resume...', 'info', 1100);
+        setTimeout(() => window.open('PARTH_s_Resume.pdf', '_blank'), 1400);
+
+      } else if (cmd === 'help') {
+        await printLine('available commands:', 'muted', 0);
+        await printLine('  sudo hire    — open resume in new tab', 'info', 100);
+        await printLine('  help         — show this message',      'info', 200);
+        await printLine('  clear        — clear terminal output',  'info', 300);
+
+      } else if (cmd === 'clear') {
+        output.innerHTML = '';
+
+      } else {
+        await printLine('bash: command not found: ' + cmd, 'error', 0);
+      }
+    }
+  </script>
+</body>
+</html>
