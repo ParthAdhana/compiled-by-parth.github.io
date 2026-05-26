@@ -445,6 +445,18 @@
 
     @keyframes blink { 50% { opacity: 0; } }
 
+    #t-hidden-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 1px;
+      height: 1px;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -630,6 +642,8 @@
               <span id="t-display"></span><span class="cursor"></span>
             </span>
           </div>
+          <input id="t-hidden-input" type="text" autocomplete="off" autocorrect="off"
+                 autocapitalize="none" spellcheck="false" aria-hidden="true" />
         </div>
 
         <div class="terminal-closed-msg" id="terminal-closed-msg">
@@ -699,31 +713,33 @@
     }
 
     /* ── TERMINAL INPUT ── */
-    const terminalEl = document.getElementById('terminal');
-    const output     = document.getElementById('terminal-output');
-    const display    = document.getElementById('t-display');
+    const terminalEl  = document.getElementById('terminal');
+    const output      = document.getElementById('terminal-output');
+    const display     = document.getElementById('t-display');
+    const hiddenInput = document.getElementById('t-hidden-input');
 
-    let buffer = '';
+    // Tap/click anywhere in terminal → focus hidden input (opens mobile keyboard)
+    terminalEl.addEventListener('click', () => {
+      if (termState !== 'closed' && termState !== 'minimized') hiddenInput.focus();
+    });
 
-    terminalEl.addEventListener('click', () => terminalEl.focus());
-    document.addEventListener('keydown', handleKey);
+    // Sync visible display as user types (works for mobile IME + desktop)
+    hiddenInput.addEventListener('input', () => {
+      display.textContent = hiddenInput.value;
+    });
 
-    function handleKey(e) {
+    // Handle Enter (submit) and keep desktop Backspace in sync
+    hiddenInput.addEventListener('keydown', (e) => {
       if (termState === 'closed' || termState === 'minimized') return;
       if (e.key === 'Enter') {
-        const cmd = buffer.trim();
-        buffer = '';
+        e.preventDefault();
+        const cmd = hiddenInput.value.trim();
+        hiddenInput.value = '';
         display.textContent = '';
         printLine('visitor@portfolio:~$ ' + cmd, 'muted');
         runCommand(cmd);
-      } else if (e.key === 'Backspace') {
-        buffer = buffer.slice(0, -1);
-        display.textContent = buffer;
-      } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
-        buffer += e.key;
-        display.textContent = buffer;
       }
-    }
+    });
 
     function printLine(text, cls = 'info', delay = 0) {
       return new Promise(resolve => {
