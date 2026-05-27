@@ -124,7 +124,7 @@
       display: flex;
       justify-content: space-between;
       margin-top: 1.75rem;
-      padding-bottom: 1.25rem;
+      padding-bottom: 1.75rem;
     }
 
     .social-icons a {
@@ -132,13 +132,13 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      width: 52px;
-      height: 52px;
+      width: clamp(36px, 9vw, 52px);
+      height: clamp(36px, 9vw, 52px);
       border: 1px solid var(--border);
       border-radius: 50%;
       color: var(--muted);
       text-decoration: none;
-      flex-shrink: 0;
+      flex-shrink: 1;
       transition: color 0.15s, border-color 0.15s;
     }
 
@@ -147,10 +147,10 @@
     .social-icons a::after {
       content: attr(title);
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 6px);
       left: 50%;
       transform: translateX(-50%);
-      font-size: 10px;
+      font-size: clamp(8px, 2vw, 10px);
       letter-spacing: 0.06em;
       color: var(--accent);
       white-space: nowrap;
@@ -162,11 +162,55 @@
     .social-icons a:hover::after { opacity: 1; }
 
     .social-icons svg {
-      width: 22px;
-      height: 22px;
+      width: clamp(15px, 4vw, 22px);
+      height: clamp(15px, 4vw, 22px);
       fill: currentColor;
       flex-shrink: 0;
     }
+
+    /* ── JOKE ── */
+    .joke-block {
+      padding: 1.5rem 0 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .joke-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .joke-text {
+      color: var(--fg-soft);
+      font-size: 14px;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+      min-height: 3em;
+      transition: opacity 0.15s;
+    }
+
+    .joke-footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .joke-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px;
+      padding: 0.3rem 0.85rem;
+      border-radius: 3px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .joke-btn:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── SECTIONS ── */
     section {
@@ -579,6 +623,16 @@
       </div>
     </header>
 
+    <!-- JOKE -->
+    <div class="joke-block">
+      <div class="joke-label">// joke.exe</div>
+      <p class="joke-text" id="joke-text">Why do programmers prefer dark mode? Because light attracts bugs.</p>
+      <div class="joke-footer">
+        <button class="joke-btn" onclick="nextJoke()">next joke →</button>
+        <span class="joke-counter" id="joke-counter"></span>
+      </div>
+    </div>
+
     <!-- ABOUT -->
     <section>
       <div class="section-label">about</div>
@@ -857,6 +911,29 @@
       } else {
         await printLine('bash: command not found: ' + cmd, 'error', 0);
       }
+    }
+
+    /* ── JOKES ── */
+    const jokes = [
+      "Why do programmers prefer dark mode? Because light attracts bugs.",
+      "A SQL query walks into a bar, walks up to two tables and asks... \"Can I join you?\"",
+      "There are only 10 types of people in the world: those who understand binary, and those who don't.",
+      "Why do Java developers wear glasses? Because they don't C#.",
+      "A programmer's wife says: \"Get a gallon of milk, and if they have eggs, get a dozen.\" He came back with 12 gallons of milk.",
+      "How many programmers does it take to change a light bulb? None — that's a hardware problem."
+    ];
+
+    let jokeIndex = 0;
+
+    function nextJoke() {
+      const el = document.getElementById('joke-text');
+      const counter = document.getElementById('joke-counter');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        jokeIndex = (jokeIndex + 1) % jokes.length;
+        el.textContent = jokes[jokeIndex];
+        el.style.opacity = '1';
+      }, 150);
     }
   </script>
 </body>
