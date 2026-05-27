@@ -38,7 +38,7 @@
       background: var(--bg);
       color: var(--fg);
       font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.75;
       padding: 0 1.5rem;
       transition: background 0.2s, color 0.2s;
@@ -62,7 +62,7 @@
       border: 1px solid var(--border);
       color: var(--muted);
       font-family: inherit;
-      font-size: 11px;
+      font-size: 12px;
       padding: 0.25rem 0.65rem;
       border-radius: 3px;
       cursor: pointer;
@@ -75,19 +75,19 @@
 
     /* ── HERO ── */
     header {
-      padding: 5rem 0 3.5rem;
+      padding: 5rem 0 1.75rem;
       border-bottom: 1px solid var(--border);
     }
 
     header .tag {
       color: var(--accent);
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
     }
 
     header h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-size: clamp(2.6rem, 7.5vw, 4.2rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.1;
@@ -97,7 +97,7 @@
     header .role {
       margin-top: 0.5rem;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 17px;
     }
 
     .links {
@@ -110,7 +110,7 @@
     .links a {
       color: var(--fg);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.05em;
       border-bottom: 1px solid var(--muted);
       padding-bottom: 1px;
@@ -119,16 +119,65 @@
 
     .links a:hover { color: var(--accent); border-color: var(--accent); }
 
+    /* ── SOCIAL ICONS ── */
+    .social-icons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.75rem;
+      padding-bottom: 1.25rem;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--muted);
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .social-icons a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .social-icons a::after {
+      content: attr(title);
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    .social-icons a:hover::after { opacity: 1; }
+
+    .social-icons svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
     /* ── SECTIONS ── */
     section {
-      padding: 3rem 0;
+      padding: 2.25rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     section:last-of-type { border-bottom: none; }
 
     .section-label {
-      font-size: 11px;
+      font-size: 18px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
@@ -138,7 +187,7 @@
     /* ── ABOUT ── */
     .about-text {
       color: var(--fg-soft);
-      font-size: 14.5px;
+      font-size: 15.5px;
       line-height: 1.9;
       max-width: 640px;
     }
@@ -157,17 +206,17 @@
     .job-company {
       font-weight: 700;
       color: var(--fg-strong);
-      font-size: 15px;
+      font-size: 18px;
     }
 
     .job-period {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .job-title {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       margin-top: 0.15rem;
       margin-bottom: 0.75rem;
     }
@@ -176,7 +225,7 @@
 
     .job ul li {
       color: var(--fg-soft);
-      font-size: 13.5px;
+      font-size: 14.5px;
       padding-left: 1.2em;
       position: relative;
       margin-bottom: 0.35rem;
@@ -191,7 +240,7 @@
 
     .job-tech {
       margin-top: 0.75rem;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
     }
 
@@ -208,14 +257,14 @@
 
     .skill-cat {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.05em;
       white-space: nowrap;
     }
 
     .skill-items {
       color: var(--fg);
-      font-size: 13.5px;
+      font-size: 14.5px;
     }
 
     /* ── PROJECTS ── */
@@ -233,11 +282,11 @@
     .project-name {
       font-weight: 700;
       color: var(--fg-strong);
-      font-size: 14.5px;
+      font-size: 17px;
     }
 
     .project-stack {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
     }
 
@@ -245,7 +294,7 @@
 
     .project ul li {
       color: var(--fg-soft);
-      font-size: 13.5px;
+      font-size: 14.5px;
       padding-left: 1.2em;
       position: relative;
       margin-bottom: 0.3rem;
@@ -263,7 +312,7 @@
 
     .achievements ul li {
       color: var(--fg-soft);
-      font-size: 13.5px;
+      font-size: 14.5px;
       padding-left: 1.4em;
       position: relative;
       margin-bottom: 0.45rem;
@@ -274,7 +323,7 @@
       position: absolute;
       left: 0;
       color: var(--accent);
-      font-size: 10px;
+      font-size: 11px;
       top: 4px;
     }
 
@@ -290,17 +339,17 @@
     .edu-school {
       font-weight: 700;
       color: var(--fg-strong);
-      font-size: 15px;
+      font-size: 18px;
     }
 
     .edu-period {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .edu-degree {
       color: var(--fg-soft);
-      font-size: 13.5px;
+      font-size: 14.5px;
       margin-top: 0.25rem;
     }
 
@@ -308,7 +357,7 @@
     .terminal-section { padding: 3rem 0 5rem; }
 
     .terminal-hint {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
       margin-bottom: 0.75rem;
     }
@@ -359,7 +408,7 @@
     .terminal-title {
       flex: 1;
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
     }
 
@@ -374,7 +423,7 @@
 
     .terminal-closed-msg {
       padding: 0.75rem 1.5rem 1.25rem;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
       display: none;
     }
@@ -384,7 +433,7 @@
       border: none;
       color: var(--accent);
       font-family: inherit;
-      font-size: 13px;
+      font-size: 14px;
       cursor: pointer;
       padding: 0;
       text-decoration: underline;
@@ -393,7 +442,7 @@
     #terminal-output { min-height: 40px; }
 
     .t-line {
-      font-size: 13.5px;
+      font-size: 14.5px;
       margin-bottom: 0.2rem;
       opacity: 0;
       animation: fadein 0.15s forwards;
@@ -415,7 +464,7 @@
 
     .t-prompt {
       color: var(--accent);
-      font-size: 13.5px;
+      font-size: 14.5px;
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -428,15 +477,15 @@
     }
 
     #t-display {
-      font-size: 13.5px;
+      font-size: 14.5px;
       color: var(--fg);
       word-break: break-all;
     }
 
     .cursor {
       display: inline-block;
-      width: 8px;
-      height: 15px;
+      width: 9px;
+      height: 16px;
       background: var(--accent);
       flex-shrink: 0;
       animation: blink 1s step-end infinite;
@@ -462,7 +511,7 @@
       text-align: center;
       padding: 2rem 0;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       border-top: 1px solid var(--border);
     }
 
@@ -492,10 +541,42 @@
       <div class="role">Software Engineer · Backend &amp; Systems</div>
       <nav class="links">
         <a href="mailto:parth007adhana@gmail.com">parth007adhana@gmail.com</a>
-        <a href="www.linkedin.com/in/parth-adhana-56b067199" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://www.linkedin.com/in/parth-adhana-56b067199" target="_blank" rel="noopener">linkedin</a>
         <a href="https://github.com/ParthAdhana" target="_blank" rel="noopener">github</a>
         <a href="tel:+918929365677">+91-8929365677</a>
       </nav>
+
+      <div class="social-icons" aria-label="Social profiles">
+
+        <a href="https://github.com/ParthAdhana" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/parth-adhana-56b067199/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+
+        <a href="https://x.com/AParth1000/" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+
+        <a href="https://leetcode.com/u/parth1000/" target="_blank" rel="noopener" aria-label="LeetCode" title="LeetCode">
+          <svg viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+        </a>
+
+        <a href="https://codeforces.com/profile/parth_1000" target="_blank" rel="noopener" aria-label="Codeforces" title="Codeforces">
+          <svg viewBox="0 0 24 24"><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.672 21 0 20.328 0 19.5V9c0-.828.672-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-15c0-.828.672-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V12c0-.828.672-1.5 1.5-1.5h3z"/></svg>
+        </a>
+
+        <a href="https://www.codechef.com/users/real_parth" target="_blank" rel="noopener" aria-label="CodeChef" title="CodeChef">
+          <svg viewBox="0 0 24 24"><path d="M12 2C9.24 2 7 3.9 7 6.3c0 1.03.4 1.97 1.06 2.7H7.5v5h9v-5h-.56A4.3 4.3 0 0 0 17 6.3C17 3.9 14.76 2 12 2zM8.5 15v1.7c0 .72.58 1.3 1.3 1.3h4.4c.72 0 1.3-.58 1.3-1.3V15h-7z"/></svg>
+        </a>
+
+        <a href="https://cses.fi/user/93783" target="_blank" rel="noopener" aria-label="CSES" title="CSES">
+          <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+        </a>
+
+      </div>
     </header>
 
     <!-- ABOUT -->
